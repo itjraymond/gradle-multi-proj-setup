@@ -287,7 +287,30 @@ no changes added to commit (use "git add" and/or "git commit -a")
 We can commit this as the first initial project setup.  Note that because `/service-api` and `/service-client` folders are empty, they are not part of this commit.
 
 ```shell script
+itjraymond $ git add .
+itjraymond $ git commit -m "Initial multi-project setup"
+[main e611e47] Initial multi-project setup
+ 11 files changed, 659 insertions(+), 2 deletions(-)
+ create mode 100644 .gitattributes
+ create mode 100644 buildSrc/build.gradle
+ create mode 100644 buildSrc/src/main/groovy/gradle.multi.proj.setup.java-application-conventions.gradle
+ create mode 100644 buildSrc/src/main/groovy/gradle.multi.proj.setup.java-common-conventions.gradle
+ create mode 100644 buildSrc/src/main/groovy/gradle.multi.proj.setup.java-library-conventions.gradle
+ create mode 100644 gradle/wrapper/gradle-wrapper.properties
+ create mode 100755 gradlew
+ create mode 100644 gradlew.bat
+ create mode 100644 settings.gradle
 
+itjraymond $ git push
+Enumerating objects: 22, done.
+Counting objects: 100% (22/22), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (16/16), done.
+Writing objects: 100% (19/19), 8.40 KiB | 4.20 MiB/s, done.
+Total 19 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+To github.com:itjraymond/gradle-multi-proj-setup.git
+   3c4565b..e611e47  main -> main
 ```
 
 
