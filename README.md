@@ -313,6 +313,7 @@ To github.com:itjraymond/gradle-multi-proj-setup.git
    3c4565b..e611e47  main -> main
 ```
 
+> _Note: The above project state can be retrieved from `git checkout code_base_01` branch._
 
 We can also need to create a `build.gradle` at the root of the project.  This root `build.gradle` would contain build configuration for the multi-project setup
 and configuration common for both sub-projects.  But before creating any root `build.gradle`, we can create our Spring Boot applications 
@@ -429,7 +430,24 @@ itjraymond $ tree
 37 directories, 32 files
 ```
 
-With all these changes in place, you start the sample `service-api` by executing:
+We can also run the following gradle command to view the multi-project setup:
+
+```shell script
+itjraymond $ ./gradlew -q projects
+
+------------------------------------------------------------
+Root project
+------------------------------------------------------------
+
+Root project 'gradle-multi-proj-setup'
++--- Project ':service-api'
+\--- Project ':service-client'
+
+To see a list of the tasks of a project, run gradlew <project-path>:tasks
+For example, try running gradlew :service-api:tasks
+```
+
+With all these changes in place, we can also check if the sample `service-api` can be executed:
 
 ```shell script
 itjraymond $ ./gradlew :service-api:bootRun
