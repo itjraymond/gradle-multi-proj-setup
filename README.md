@@ -314,6 +314,139 @@ To github.com:itjraymond/gradle-multi-proj-setup.git
 ```
 
 
-We will also need to create a `build.gradle` at the root of the project.  This `build.gradle` will contain build configuration for the multi-project setup
-and configuration common for both sub-projects.  But before creating the `build.gradle`, we can create our Spring Boot application 
-from [spring initializr](https://start.spring.io/).
+We can also need to create a `build.gradle` at the root of the project.  This root `build.gradle` would contain build configuration for the multi-project setup
+and configuration common for both sub-projects.  But before creating any root `build.gradle`, we can create our Spring Boot applications 
+from [spring initializr](https://start.spring.io/) and unzipping it within our project.
+
+Figures below show the spring initializr selections for both `service-api` and `service-client`.  Both uses the same dependencies 
+for lombok and spring reactive web.
+
+![service-api](./docs-images/initializr.service-api.png "Spring Boot selections for service-api")
+
+![service-client](./docs-images/initializr.service-client.png "Spring Boot selections for service-client")
+
+The generated zip is downloaded locally and moved to the root of our multi-project setup.  Previously, we created
+empty folder for `service-api` and `service-client` but we will delete those folders now because unzipping our
+downloaded spring boot app will automatically create those folders for us.  So you should have something like:
+
+```shell script
+itjraymond $ ls -la
+total 328
+drwxr-xr-x  17 jraymond  staff    544 22 Nov 13:45 .
+drwxr-xr-x  20 jraymond  staff    640 22 Nov 11:00 ..
+drwxr-xr-x  13 jraymond  staff    416 22 Nov 11:52 .git
+-rw-r--r--   1 jraymond  staff    154 22 Nov 11:22 .gitattributes
+-rw-r--r--   1 jraymond  staff    382 22 Nov 11:22 .gitignore
+drwxr-xr-x   7 jraymond  staff    224 22 Nov 11:22 .gradle
+-rw-r--r--   1 jraymond  staff  12055 22 Nov 11:54 README.md
+drwxr-xr-x   4 jraymond  staff    128 22 Nov 11:22 buildSrc
+drwxr-xr-x   4 jraymond  staff    128 22 Nov 13:44 docs-images
+drwxr-xr-x   3 jraymond  staff     96 22 Nov 11:21 gradle
+-rwxr-xr-x   1 jraymond  staff   5766 22 Nov 11:21 gradlew
+-rw-r--r--   1 jraymond  staff   2763 22 Nov 11:21 gradlew.bat
+-rw-r--r--@  1 jraymond  staff  62187 22 Nov 13:42 service-api.zip         <--
+-rw-r--r--@  1 jraymond  staff  62387 22 Nov 13:45 service-client.zip      <--
+-rw-r--r--   1 jraymond  staff    408 22 Nov 11:22 settings.gradle
+```
+
+Once we have unzipped our apps, We can now remove our `service-*.zip` files.
+
+Our final multi-project folder/file setup should look like:
+
+```shell script
+itjraymond $ tree
+.
+├── README.md
+├── buildSrc
+│   ├── build.gradle
+│   └── src
+│       └── main
+│           └── groovy
+│               ├── gradle.multi.proj.setup.java-application-conventions.gradle
+│               ├── gradle.multi.proj.setup.java-common-conventions.gradle
+│               └── gradle.multi.proj.setup.java-library-conventions.gradle
+├── docs-images
+│   ├── initializr.service-api.png
+│   └── initializr.service-client.png
+├── gradle
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── gradlew
+├── gradlew.bat
+├── service-api
+│   ├── HELP.md
+│   ├── build.gradle
+│   ├── gradle
+│   │   └── wrapper
+│   │       ├── gradle-wrapper.jar
+│   │       └── gradle-wrapper.properties
+│   ├── gradlew
+│   ├── gradlew.bat
+│   ├── settings.gradle
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── ca
+│       │   │       └── jent
+│       │   │           └── serviceapi
+│       │   │               └── ServiceApiApplication.java
+│       │   └── resources
+│       │       └── application.properties
+│       └── test
+│           └── java
+│               └── ca
+│                   └── jent
+│                       └── serviceapi
+│                           └── ServiceApiApplicationTests.java
+├── service-client
+│   ├── HELP.md
+│   ├── build.gradle
+│   ├── gradle
+│   │   └── wrapper
+│   │       ├── gradle-wrapper.jar
+│   │       └── gradle-wrapper.properties
+│   ├── gradlew
+│   ├── gradlew.bat
+│   ├── settings.gradle
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── ca
+│       │   │       └── jent
+│       │   │           └── serviceclient
+│       │   │               └── ServiceClientApplication.java
+│       │   └── resources
+│       │       └── application.properties
+│       └── test
+│           └── java
+│               └── ca
+│                   └── jent
+│                       └── serviceclient
+│                           └── ServiceClientApplicationTests.java
+└── settings.gradle
+
+37 directories, 32 files
+```
+
+With all these changes in place, you start the sample `service-api` by executing:
+
+```shell script
+itjraymond $ ./gradlew :service-api:bootRun
+
+> Task :service-api:bootRun
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.3.6.RELEASE)
+
+2020-11-22 14:04:56.192  INFO 14256 --- [           main] c.jent.serviceapi.ServiceApiApplication  : Starting ServiceApiApplication on snappi.hitronhub.home with PID 14256 (/Users/jraymond/workspaces/java/gradle-multi-proj-setup/service-api/build/classes/java/main started by jraymond in /Users/jraymond/workspaces/java/gradle-multi-proj-setup/service-api)
+2020-11-22 14:04:56.194  INFO 14256 --- [           main] c.jent.serviceapi.ServiceApiApplication  : No active profile set, falling back to default profiles: default
+2020-11-22 14:04:56.745  INFO 14256 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 8080
+2020-11-22 14:04:56.751  INFO 14256 --- [           main] c.jent.serviceapi.ServiceApiApplication  : Started ServiceApiApplication in 0.946 seconds (JVM running for 1.196)
+```
+
