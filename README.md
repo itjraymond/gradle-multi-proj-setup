@@ -468,3 +468,4 @@ itjraymond $ ./gradlew :service-api:bootRun
 2020-11-22 14:04:56.751  INFO 14256 --- [           main] c.jent.serviceapi.ServiceApiApplication  : Started ServiceApiApplication in 0.946 seconds (JVM running for 1.196)
 ```
 
+At this stage we are finally setup to do the actual implementation of the service api and client.
