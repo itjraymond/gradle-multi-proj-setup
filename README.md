@@ -432,7 +432,7 @@ itjraymond $ tree
 
 We can also run the following gradle command to view the multi-project setup:
 
-```shell script
+```css
 itjraymond $ ./gradlew -q projects
 
 ------------------------------------------------------------
