@@ -15,7 +15,7 @@ will call `gradle init`.
 
 ## 2. Clone the empty GitHub Repository
 
-```shell script
+```js
 itjraymond $ git clone git@github.com:itjraymond/gradle-multi-proj-setup.git
 > Cloning into 'gradle-multi-proj-setup'...
 > remote: Enumerating objects: 4, done.
@@ -41,7 +41,7 @@ As we can see, we currently only have the README.md file (this file :-)
 
 Once we cloned the empty GitHub project and changed directory to it, we can execute a `gradle init` command.
 
-```shell script
+```js
 itjraymond $ gradle init
 
 Select type of project to generate:
@@ -194,7 +194,7 @@ And create the following empty folders:
 
 We now have:
 
-```shell script
+```js
 itjraymond $ ls -la
 total 72
 drwxr-xr-x  14 jraymond  staff   448 22 Nov 11:31 .
@@ -239,7 +239,7 @@ itjraymond $ tree
 We need to express those changes (i.e. removal of `/app`, `/list`, `/utilities` and addition of `/service-api` and `/service-client`) and 
 that is done withing the `settings.gradle` file.  Before editing the `settings.gradle`, the file content should be as follow:
 
-```shell script
+```js
 itjraymond $ cat settings.gradle
 > rootProject.name = 'gradle-multi-proj-setup'
 > include('app', 'list', 'utilities')
@@ -249,7 +249,7 @@ itjraymond $
 
 We need to edit the file to contain the following:
 
-```shell script
+```js
 itjraymond $ cat settings.gradle
 > rootProject.name = 'gradle-multi-proj-setup'
 > include('service-api', 'service-client')
@@ -259,7 +259,7 @@ itjraymond $
 
 At this point, you should get the following `git status` output:
 
-```shell script
+```js
 itjraymond $ git status
 On branch main
 Your branch is up to date with 'origin/main'.
@@ -286,7 +286,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 We can commit this as the first initial project setup.  Note that because `/service-api` and `/service-client` folders are empty, they are not part of this commit.
 
-```shell script
+```js
 itjraymond $ git add .
 itjraymond $ git commit -m "Initial multi-project setup"
 [main e611e47] Initial multi-project setup
@@ -330,7 +330,7 @@ The generated zip is downloaded locally and moved to the root of our multi-proje
 empty folder for `service-api` and `service-client` but we will delete those folders now because unzipping our
 downloaded spring boot app will automatically create those folders for us.  So you should have something like:
 
-```shell script
+```js
 itjraymond $ ls -la
 total 328
 drwxr-xr-x  17 jraymond  staff    544 22 Nov 13:45 .
@@ -354,7 +354,7 @@ Once we have unzipped our apps, We can now remove our `service-*.zip` files.
 
 Our final multi-project folder/file setup should look like:
 
-```shell script
+```js
 itjraymond $ tree
 .
 ├── README.md
@@ -449,7 +449,7 @@ For example, try running gradlew :service-api:tasks
 
 With all these changes in place, we can also check if the sample `service-api` can be executed:
 
-```shell script
+```js
 itjraymond $ ./gradlew :service-api:bootRun
 
 > Task :service-api:bootRun
