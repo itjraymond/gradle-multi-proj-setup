@@ -9,7 +9,7 @@ related and owned by the same team, they will be both part of the same GitHub re
 
 Simply use the instructions from [GitHub Docs](https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/create-a-repo)
 
-Note that in this particular case, I do not create a gradle project aside of the repo and copy its content once I
+Note that in this particular case, I do not create a gradle project outside of this repo and copy its content once I
 cloned the repo.  Instead, we will clone this repo first and then, directly within the cloned repo directory, we
 will call `gradle init`.
 
@@ -78,7 +78,8 @@ Get more help with your project: https://docs.gradle.org/6.7.1/samples/sample_bu
 
 BUILD SUCCESSFUL in 1m 4s
 2 actionable tasks: 2 executed
-jraymond@snappi gradle-multi-proj-setup $ ls -la
+
+itjraymond $ ls -la
 total 56
 drwxr-xr-x  15 jraymond  staff   480 22 Nov 11:22 .
 drwxr-xr-x  20 jraymond  staff   640 22 Nov 11:00 ..
@@ -95,7 +96,8 @@ drwxr-xr-x   3 jraymond  staff    96 22 Nov 11:21 gradle
 drwxr-xr-x   4 jraymond  staff   128 22 Nov 11:22 list
 -rw-r--r--   1 jraymond  staff   408 22 Nov 11:22 settings.gradle
 drwxr-xr-x   4 jraymond  staff   128 22 Nov 11:22 utilities
-jraymond@snappi gradle-multi-proj-setup $ tree
+
+itjraymond $ tree
 .
 ├── README.md
 ├── app
@@ -174,7 +176,6 @@ jraymond@snappi gradle-multi-proj-setup $ tree
             └── resources
 
 54 directories, 21 files
-jraymond@snappi gradle-multi-proj-setup $
 ```
 
 As we can see, default sub-projects were created.  Those default sub-projects can be replaced with what we need: _service-api_ and _service-client_.  So
@@ -237,7 +238,7 @@ itjraymond $ tree
 ```
 
 We need to express those changes (i.e. removal of `/app`, `/list`, `/utilities` and addition of `/service-api` and `/service-client`) and 
-that is done withing the `settings.gradle` file.  Before editing the `settings.gradle`, the file content should be as follow:
+that is done within the `settings.gradle` file.  Before editing the `settings.gradle`, the file content should be as follow:
 
 ```js
 itjraymond $ cat settings.gradle
@@ -315,7 +316,7 @@ To github.com:itjraymond/gradle-multi-proj-setup.git
 
 > _Note: The above project state can be retrieved from `git checkout code_base_01` branch._
 
-We can also need to create a `build.gradle` at the root of the project.  This root `build.gradle` would contain build configuration for the multi-project setup
+We also may need to create a `build.gradle` at the root of the project.  This root `build.gradle` would contain build configuration for the multi-project setup
 and configuration common for both sub-projects.  But before creating any root `build.gradle`, we can create our Spring Boot applications 
 from [spring initializr](https://start.spring.io/) and unzipping it within our project.
 
@@ -326,7 +327,7 @@ for lombok and spring reactive web.
 
 ![service-client](./docs-images/initializr.service-client.png "Spring Boot selections for service-client")
 
-The generated zip is downloaded locally and moved to the root of our multi-project setup.  Previously, we created
+The generated zip are downloaded locally and moved to the root of our multi-project setup.  Previously, we created
 empty folder for `service-api` and `service-client` but we will delete those folders now because unzipping our
 downloaded spring boot app will automatically create those folders for us.  So you should have something like:
 
